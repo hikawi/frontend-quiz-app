@@ -1,0 +1,18 @@
+---
+import HeaderSection from "../components/HeaderSection.astro";
+import PageLayout from "../layouts/PageLayout.astro";
+
+interface Params {
+  test: string;
+  score: number;
+}
+
+const { test, score } = Astro.params;
+---
+
+<PageLayout
+  title=`Score: ${score}/10`
+  description=`Your score on the test of ${test} is ${score}/10!`
+>
+  <HeaderSection />
+</PageLayout>
