@@ -1,0 +1,12 @@
+<!-- Courtesy of Kevin Zuniga Cuellar -->
+<script is:inline>
+  const theme = (() => {
+    if (localStorage.getItem("theme")) return localStorage.getItem("theme");
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  })();
+
+  document.documentElement.classList.toggle("dark", theme === "dark");
+  window.localStorage.setItem("theme", theme);
+</script>

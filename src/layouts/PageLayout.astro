@@ -1,4 +1,6 @@
 ---
+import PageThemeScript from "./PageThemeScript.astro";
+
 interface Props {
   title: string;
   description: string;
@@ -7,25 +9,28 @@ interface Props {
 const { title, description } = Astro.props;
 ---
 
-<head>
-  <meta charset="utf-8" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <meta name="viewport" content="width=device-width" />
-  <meta name="generator" content={Astro.generator} />
-  <meta name="description" content={description} />
-  <title>{title}</title>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <title>{title}</title>
 
-  <meta property="og:title" content={title} />
-  <meta property="og:description" content={description} />
-</head>
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <PageThemeScript />
+  </head>
 
-<body>
-  <slot />
-</body>
+  <body>
+    <slot />
+  </body>
+</html>
 
 <style>
   body {
-    @apply bg-light-gray dark:bg-dark-navy text-dark-navy h-fit min-h-screen w-full bg-cover bg-center bg-no-repeat duration-200 motion-reduce:duration-0 dark:text-white;
+    @apply bg-light-gray dark:bg-dark-navy text-dark-navy h-fit min-h-screen w-full bg-cover bg-center bg-no-repeat dark:text-white;
     @apply bg-[url('../assets/pattern-background-mobile-light.svg')] dark:bg-[url('../assets/pattern-background-mobile-dark.svg')];
     @apply sm:bg-[url('../assets/pattern-background-tablet-light.svg')] sm:dark:bg-[url('../assets/pattern-background-tablet-dark.svg')];
     @apply xl:bg-[url('../assets/pattern-background-desktop-light.svg')] xl:dark:bg-[url('../assets/pattern-background-desktop-dark.svg')];

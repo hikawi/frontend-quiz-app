@@ -12,4 +12,7 @@ export default defineConfig({
   adapter: vercel({
     imageService: true,
   }),
+  prefetch: {
+    prefetchAll: true,
+  },
 });
