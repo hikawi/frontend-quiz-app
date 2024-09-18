@@ -1,5 +1,6 @@
 ---
 import HeaderSection from "../components/HeaderSection.astro";
+import StartLink from "../components/StartLink.astro";
 import PageLayout from "../layouts/PageLayout.astro";
 ---
 
@@ -8,4 +9,25 @@ import PageLayout from "../layouts/PageLayout.astro";
   description="An app for taking quiz about front-end development"
 >
   <HeaderSection />
+  <main
+    class="flex w-full flex-col gap-10 px-6 py-8 sm:gap-16 sm:px-16 xl:flex-row xl:px-32"
+  >
+    <div
+      class="flex flex-col justify-start gap-4 text-3xl leading-tight xs:text-[2.5rem] sm:text-[4rem] xl:w-full xl:gap-12"
+    >
+      <h1 class="font-light">
+        Welcome to the<br /><span class="font-medium">Frontend Quiz!</span>
+      </h1>
+      <p class="text-sm italic text-gray-navy sm:text-xl dark:text-light-blue">
+        Pick a subject to get started.
+      </p>
+    </div>
+
+    <div class="flex w-full flex-col gap-3 sm:gap-6">
+      <StartLink href="/html" subject="html" />
+      <StartLink href="/css" subject="css" />
+      <StartLink href="/js" subject="js" />
+      <StartLink href="/accessibility" subject="accessibility" />
+    </div>
+  </main>
 </PageLayout>

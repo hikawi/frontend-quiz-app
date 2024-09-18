@@ -130,6 +130,7 @@ useEffect(() => {
 
 - [Applying Dark mode in Astro](https://www.kevinzunigacuellar.com/blog/dark-mode-in-astro/) - The killer here.
 - [Astro Dark Mode, using persistent nanostores](https://bepyan.me/en/post/astro-darkmode/) - Another article with the similar solution.
+- [Progress bar HTML5](https://css-tricks.com/html5-progress-element/)
 
 ## Author
 

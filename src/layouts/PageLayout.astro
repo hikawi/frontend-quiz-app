@@ -20,6 +20,12 @@ const { title, description } = Astro.props;
 
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
     <PageThemeScript />
   </head>
 
@@ -30,7 +36,7 @@ const { title, description } = Astro.props;
 
 <style>
   body {
-    @apply bg-light-gray dark:bg-dark-navy text-dark-navy h-fit min-h-screen w-full bg-cover bg-center bg-no-repeat dark:text-white;
+    @apply h-fit min-h-screen w-full bg-light-gray bg-cover bg-center bg-no-repeat font-rubik text-dark-navy dark:bg-dark-navy dark:text-white;
     @apply bg-[url('../assets/pattern-background-mobile-light.svg')] dark:bg-[url('../assets/pattern-background-mobile-dark.svg')];
     @apply sm:bg-[url('../assets/pattern-background-tablet-light.svg')] sm:dark:bg-[url('../assets/pattern-background-tablet-dark.svg')];
     @apply xl:bg-[url('../assets/pattern-background-desktop-light.svg')] xl:dark:bg-[url('../assets/pattern-background-desktop-dark.svg')];

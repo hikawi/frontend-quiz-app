@@ -1,0 +1,25 @@
+---
+import data from "../assets/data.json";
+import PageLayout from "./PageLayout.astro";
+import QuizScreen from "../components/quiz/QuizScreen.vue";
+import HeaderSection from "../components/HeaderSection.astro";
+
+interface Props {
+  subject: string;
+  index: number;
+  title: string;
+  description: string;
+}
+
+const { subject, index, title, description } = Astro.props;
+---
+
+<script define:vars={{ subject }}>
+  localStorage.setItem("quiz:subject", subject);
+  localStorage.setItem("quiz:score", 0);
+</script>
+
+<PageLayout title={title} description={description}>
+  <HeaderSection showTestType />
+  <QuizScreen questions={data[index]} client:load />
+</PageLayout>

@@ -11,6 +11,7 @@ const quizInitial: Quiz = {
 };
 
 const $quiz = persistentMap<Quiz>("quiz:", quizInitial, {
+  listen: false,
   encode: JSON.stringify,
   decode: (val) => {
     try {

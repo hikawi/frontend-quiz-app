@@ -1,0 +1,17 @@
+---
+import TestType from "../components/TestType.vue";
+
+interface Props {
+  href: string;
+  subject: string;
+}
+
+const { href, subject } = Astro.props;
+---
+
+<a
+  href={href}
+  class="relative flex h-16 w-full flex-row items-center gap-4 rounded-xl bg-white p-3 shadow-lg after:absolute after:left-0 after:top-0 after:h-full after:w-full after:rounded-xl after:bg-slate-600 after:opacity-0 after:content-[''] after:hover:opacity-30 sm:h-20 sm:gap-8 xl:p-5 dark:bg-navy dark:after:bg-white"
+>
+  <TestType subject={subject} />
+</a>
