@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, ref, useTemplateRef } from "vue";
 import IconError from "../icons/IconError.vue";
 import IconCorrect from "../icons/IconCorrect.vue";
 
 import { $quiz } from "../../stores/quiz";
 import { useStore } from "@nanostores/vue";
+import { validateEnvVariable } from "astro/env/runtime";
 
 const props = defineProps<{
   choices: string[];
@@ -34,15 +35,27 @@ function buttonHandler() {
     submitted.value = true;
   }
 }
+
+function keypressHandler(event: KeyboardEvent, choice: string) {
+  if (event.key === "Enter") {
+    if (selectAnswer.value === choice) selectAnswer.value = "";
+    else selectAnswer.value = choice;
+  }
+}
 </script>
 
 <template>
   <div
     class="flex w-full flex-col gap-3 text-lg font-medium sm:gap-6 sm:text-[1.75rem]"
+    role="radiogroup"
   >
     <label
       v-for="(choice, idx) in choices"
-      class="group flex flex-row items-center justify-between gap-4 rounded-xl border-[3px] bg-white p-3 shadow-lg sm:rounded-3xl xl:p-5 dark:bg-navy"
+      role="radio"
+      :tabindex="submitted ? -1 : 0"
+      @keydown="(event) => keypressHandler(event, choice)"
+      :aria-checked="choice === selectAnswer"
+      class="group relative flex flex-row items-center justify-between gap-4 rounded-xl border-[3px] bg-white p-3 shadow-lg sm:rounded-3xl xl:p-5 dark:bg-navy"
       :class="{
         'border-green': choice === selectAnswer && submitted && correct,
         'border-red': choice === selectAnswer && submitted && !correct,
@@ -50,15 +63,16 @@ function buttonHandler() {
         'border-white dark:border-navy': choice !== selectAnswer,
       }"
     >
+      <input
+        type="radio"
+        name="answer"
+        class="peer absolute opacity-0"
+        v-model="selectAnswer"
+        :value="choice"
+        :disabled="submitted"
+      />
+
       <div class="group flex flex-row items-center gap-4">
-        <input
-          type="radio"
-          name="answer"
-          class="peer hidden"
-          v-model="selectAnswer"
-          :value="choice"
-          :disabled="submitted"
-        />
         <div
           class="flex size-10 shrink-0 grow-0 items-center justify-center rounded-xl text-gray-navy"
           :class="{
@@ -67,7 +81,7 @@ function buttonHandler() {
             'bg-red text-white':
               choice === selectAnswer && submitted && !correct,
             'bg-purple text-white': choice === selectAnswer && !submitted,
-            'group-hover:bg-accessibility bg-light-gray group-hover:text-purple dark:bg-white':
+            'bg-light-gray group-hover:bg-accessibility group-hover:text-purple group-focus:bg-accessibility group-focus:text-purple dark:bg-white':
               choice !== selectAnswer,
           }"
         >
