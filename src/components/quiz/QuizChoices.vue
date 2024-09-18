@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, useTemplateRef } from "vue";
+import { computed, onMounted, onUnmounted, ref, useTemplateRef } from "vue";
 import IconError from "../icons/IconError.vue";
 import IconCorrect from "../icons/IconCorrect.vue";
 
@@ -42,6 +42,52 @@ function keypressHandler(event: KeyboardEvent, choice: string) {
     else selectAnswer.value = choice;
   }
 }
+
+function overallKeyHandler(event: KeyboardEvent) {
+  switch (event.key) {
+    case "1":
+    case "a":
+    case "A":
+      selectAnswer.value = props.choices[0];
+      break;
+    case "2":
+    case "b":
+    case "B":
+      selectAnswer.value = props.choices[1];
+      break;
+    case "3":
+    case "c":
+    case "C":
+      selectAnswer.value = props.choices[2];
+      break;
+    case "4":
+    case "d":
+    case "D":
+      selectAnswer.value = props.choices[3];
+      break;
+    case "t":
+    case "T":
+      const htmlList = document.documentElement.classList;
+      htmlList.toggle("dark");
+      localStorage.setItem(
+        "theme",
+        htmlList.contains("dark") ? "dark" : "light",
+      );
+      break;
+    case "Enter":
+    case "Return":
+      if (selectAnswer.value !== "") buttonHandler();
+      break;
+  }
+}
+
+onMounted(() => {
+  window.addEventListener("keydown", overallKeyHandler);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("keydown", overallKeyHandler);
+});
 </script>
 
 <template>
