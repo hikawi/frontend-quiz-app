@@ -38,18 +38,36 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
+<details>
 
-Add a screenshot of your solution. The easiest way to do this is to use Firefox to view your project, right-click the page and select "Take a Screenshot". You can choose either a full-height screenshot or a cropped one based on how long the page is. If it's very long, it might be best to crop it.
+<summary>Desktop</summary>
 
-Alternatively, you can use a tool like [FireShot](https://getfireshot.com/) to take the screenshot. FireShot has a free option, so you don't need to purchase it.
+![Desktop](./desktop-choice.jpeg)
+![Desktop](./home-desktop.jpeg)
 
-Then crop/optimize/edit your image however you like, add it to your project, and update the file path in the image above.
+</details>
+
+<details>
+
+<summary>Mobile</summary>
+
+![Mobile](./result-mobile.jpeg)
+![Mobile](./home-mobile.jpeg)
+
+</details>
+
+<details>
+
+<summary>Tablet</summary>
+
+![Tablet](./home-tablet.jpeg)
+![Tablet](./result-tablet.jpeg)
+
+</details>
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- [Live Site URL](https://frontend-quiz-app.frilly.dev/)
 
 ## My process
 
@@ -58,6 +76,7 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 - [Vue](https://vuejs.org/)
 - [Astro](https://astro.build/)
 - [Tailwind CSS](https://tailwindcss.com/)
+- [Sass](https://sass-lang.com/)
 
 ### Logs
 
@@ -120,11 +139,19 @@ useEffect(() => {
 // In template, only access store if ready is true
 ```
 
+After this, I worked on making the page layout for a question, given a list of questions. If I can do this for one, the project's done. The last part of using quiz screens and handling scores wasn't too difficult, and was very smooth sailing once props are properly (no pun intended) passed down.
+
 </details>
 
 ### What I learned
 
+- Using multi pages in an Astro app.
+- Preserving a persistent state through local storage.
+- Clean dark mode switcher that preserves through multiple pages.
+
 ### Continued development
+
+I'd like to use multi page and routing in Astro more.
 
 ### Useful resources
 
