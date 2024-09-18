@@ -1,35 +1,36 @@
 <script setup lang="ts">
-import IconAccessibility from "./icons/IconAccessibility.vue";
-import IconHtml from "./icons/IconHtml.vue";
-import IconCss from "./icons/IconCss.vue";
-import IconJs from "./icons/IconJs.vue";
-
-import { $quizData } from "../stores/quiz";
 import { useStore } from "@nanostores/vue";
+import { computed } from "vue";
+import { $quiz } from "../stores/quiz";
+import { useReady } from "../stores/useReady";
+import FilledIcon from "./icons/FilledIcon.vue";
 
-const quiz = useStore($quizData);
+const quiz = useStore($quiz);
+const ready = useReady();
+
+const name = computed(() => {
+  if (!ready) return "";
+  switch (quiz.value.subject) {
+    case "accessibility":
+      return "Accessibility";
+    case "html":
+      return "HTML";
+    case "css":
+      return "CSS";
+    case "js":
+      return "JavaScript";
+    default:
+      return "";
+  }
+});
 </script>
 
 <template>
-  <div class="flex flex-row items-center gap-4 sm:gap-6">
-    <template v-if="quiz.subject === 'accessibility'">
-      <IconAccessibility />
-      <span class="text-lg font-medium sm:text-[1.75rem]">Accessibility</span>
-    </template>
-    <template v-else-if="quiz.subject === 'html'">
-      <IconHtml />
-      <span class="text-lg font-medium sm:text-[1.75rem]">HTML</span>
-    </template>
-    <template v-else-if="quiz.subject === 'css'">
-      <IconCss />
-      <span class="text-lg font-medium sm:text-[1.75rem]">CSS</span>
-    </template>
-    <template v-else-if="quiz.subject === 'js'">
-      <IconJs />
-      <span class="text-lg font-medium sm:text-[1.75rem]">JavaScript</span>
-    </template>
-    <template v-else>
-      <span class="invisible">Unknown</span>
-    </template>
+  <div
+    class="flex h-10 flex-row items-center gap-4 text-lg font-medium sm:h-14 sm:gap-6 sm:text-[1.75rem]"
+    v-if="ready"
+  >
+    <FilledIcon :subject="quiz.subject" />
+    <span>{{ name }}</span>
   </div>
 </template>

@@ -17,6 +17,10 @@ export default {
         white: "#FFFFFF",
         green: "#26D782",
         red: "#EE5454",
+        html: "#FFF1E9",
+        css: "#E0FDEF",
+        js: "#EBF0FF",
+        accessibility: "#F6E7FF",
       },
       fontFamily: {
         rubik: ["Rubik", "sans-serif"],

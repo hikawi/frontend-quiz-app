@@ -1,10 +1,11 @@
 ---
 import HeaderTestType from "./HeaderTestType.vue";
 import ThemeSwitcher from "./ThemeSwitcher.vue";
-import TestTypeSwitcher from "./TestTypeSwitcher.vue";
-import TestCount from "./TestCount.vue";
 ---
 
-<header class="flex w-full flex-row items-center justify-between px-6 py-4">
-  <TestCount client:load />
+<header
+  class="flex w-full flex-row items-center justify-between px-6 py-4 sm:px-16 sm:py-10 xl:px-32 xl:py-20"
+>
+  <HeaderTestType client:load />
+  <ThemeSwitcher client:load />
 </header>

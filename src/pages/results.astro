@@ -1,16 +1,10 @@
 ---
 import HeaderSection from "../components/HeaderSection.astro";
+import QuizResults from "../components/quiz/QuizResults.vue";
 import PageLayout from "../layouts/PageLayout.astro";
-
-const { test, score } = Astro.params;
 ---
 
-<PageLayout
-  title={score ? `Score: ${score}/10` : "Unknown results"}
-  description={test && score
-    ? `Your score on the test of ${test} is ${score}/10!`
-    : "Unknown results"}
->
-  <HeaderSection {test} />
-  <a href="/">To quiz</a>
+<PageLayout title="Results" description="Your results on the front-end quiz">
+  <HeaderSection />
+  <QuizResults client:load />
 </PageLayout>

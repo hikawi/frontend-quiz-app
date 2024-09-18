@@ -89,6 +89,39 @@ Next roadblock is the fact that even though nanostores does persist some data th
 
 </details>
 
+<details>
+<summary>Day 2</summary>
+
+Apparently, you can just watch the pinia state, and make it so it auto saves to local storage whenever pinia is "disabled" to preserve the state. Sadly, this doesn't work, as Astro is a lot different from something tailored for Vue apps like Nuxt, and when Astro tries to prerender, it hits `window` and crashes instead.
+
+The idea seems a bit inefficient. But when using `@nanostores/persistent`, we need to delay the `localStorage` check until the client-side is ready. We need to refrain from reading the store variable until it is mounted.
+
+Vue:
+
+```js
+// SCript-setup Vue
+const store = useStore($store);
+const ready = ref(false);
+onMounted(() => (ready = true));
+
+// In template, only access store if ready is true
+```
+
+React:
+
+```js
+const [ready, setReady] = useState(false);
+const store = useStore($store);
+
+useEffect(() => {
+  setReady(true);
+}, []);
+
+// In template, only access store if ready is true
+```
+
+</details>
+
 ### What I learned
 
 ### Continued development

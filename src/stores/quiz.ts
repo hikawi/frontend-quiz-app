@@ -1,8 +1,24 @@
 import { persistentMap } from "@nanostores/persistent";
 
-const $quizData = persistentMap("quiz:", {
+type Quiz = {
+  subject: string;
+  score: number;
+};
+
+const quizInitial: Quiz = {
   subject: "",
-  score: "0",
+  score: 0,
+};
+
+const $quiz = persistentMap<Quiz>("quiz:", quizInitial, {
+  encode: JSON.stringify,
+  decode: (val) => {
+    try {
+      return JSON.parse(val);
+    } catch {
+      return val;
+    }
+  },
 });
 
-export { $quizData };
+export { $quiz };

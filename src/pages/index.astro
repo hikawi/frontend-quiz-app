@@ -1,6 +1,5 @@
 ---
-import TestCount from "../components/TestCount.vue";
-import ThemeSwitcher from "../components/ThemeSwitcher.vue";
+import HeaderSection from "../components/HeaderSection.astro";
 import PageLayout from "../layouts/PageLayout.astro";
 ---
 
@@ -8,7 +7,5 @@ import PageLayout from "../layouts/PageLayout.astro";
   title="Front-end Quiz"
   description="An app for taking quiz about front-end development"
 >
-  <a href="/results">To results</a>
-  <ThemeSwitcher client:load />
-  <TestCount client:load />
+  <HeaderSection />
 </PageLayout>
